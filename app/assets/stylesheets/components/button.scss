@@ -1,0 +1,22 @@
+.btn-new-product{
+  text-decoration: none;
+  background-color: #013440;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin-right: 4rem;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #184650;
+    color: white;
+  }
+
+  i {
+    font-size: 13px;
+  }
+}
+.text-right{
+  text-align: right;
+}

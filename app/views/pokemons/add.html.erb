@@ -1,0 +1,12 @@
+<h1>Agregar nuevo Pokemon</h1>
+<%= simple_form_for(@pokemon) do |f| %>
+  <%= f.input :name, label: "Name" %>
+  <%= f.input :main_technique, label: "Main technique" %>
+  <div class="mb-3">
+    <p>Country</p>
+  <%= f.country_select :country, as: :country, prompt: "Select country"%>
+  </div>
+  <%= f.input :pokemon_type, label: "Type" %>
+  <%= f.input :description, label: "Description" %>
+  <%= f.submit class:"btn btn-success mt-3" %>
+<% end %>
