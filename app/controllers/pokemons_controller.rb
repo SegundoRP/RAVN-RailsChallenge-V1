@@ -2,23 +2,24 @@ class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pokemons = Pokemon.paginate(page: params[:page], per_page: 3)
+    @pokemons = policy_scope(Pokemon).paginate(page: params[:page], per_page: 3)
 
     if params[:search].present?
       if params[:search][:query].empty?
-        @pokemons = Pokemon.paginate(page: params[:page], per_page: 3)
+        @pokemons = policy_scope(Pokemon).paginate(page: params[:page], per_page: 3)
       else
         sql_query = " \
           name iLIKE :query \
           OR pokemon_type iLIKE :query \
         "
-        @pokemons = Pokemon.where(sql_query, query: "%#{params[:search][:query]}%").paginate(page: params[:page], per_page: 3)
+        @pokemons = policy_scope(Pokemon).where(sql_query, query: "%#{params[:search][:query]}%").paginate(page: params[:page], per_page: 3)
       end
     end
   end
 
   def add
     @pokemon = Pokemon.new
+    authorize @pokemon
   end
 
   def show
@@ -26,6 +27,7 @@ class PokemonsController < ApplicationController
 
   def create
     @pokemon = Pokemon.new(pokemon_params)
+    authorize @pokemon
     if @pokemon.save
       redirect_to pokemon_path(@pokemon)
     else
@@ -53,6 +55,7 @@ class PokemonsController < ApplicationController
 
   def set_pokemon
     @pokemon = Pokemon.find(params[:id])
+    authorize @pokemon
   end
 
   def pokemon_params

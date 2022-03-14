@@ -9,8 +9,10 @@
   <% end %>
   </div>
 
-  <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
-    <i class="fas fa-plus"></i> Agregar
+  <% if current_user.admin %>
+    <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
+      <i class="fas fa-plus"></i> Agregar
+    <% end %>
   <% end %>
 </div>
 <div class="container">
@@ -20,7 +22,9 @@
       <th scope="col" class="text-center text-muted">ID</th>
       <th scope="col" class="text-center text-muted">NAME</th>
       <th scope="col" class="text-center text-muted">TYPE</th>
-      <th scope="col" class="text-center text-muted">ACTIONS</th>
+      <% if current_user.admin %>
+        <th scope="col" class="text-center text-muted">ACTIONS</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -35,15 +39,19 @@
       <td scope="row" class="text-center column-info">
         <%= pokemon.pokemon_type %>
       </td>
-      <td scope="row" class="text-center column-info">
-        <%= link_to(edit_pokemon_path(pokemon), title: "EDIT")  do %>
-          <%= image_tag"edit.svg", class:"detalles-svg" %>
+        <% if policy(pokemon).edit? %>
+          <td scope="row" class="text-center column-info">
+            <%= link_to(edit_pokemon_path(pokemon), title: "EDIT")  do %>
+              <%= image_tag"edit.svg", class:"detalles-svg" %>
+            <% end %>
         <% end %>
         &nbsp;&nbsp;&nbsp;
-        <%= link_to(pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
-          <%= image_tag "delete.svg", class:"editar-svg" %>
+        <% if policy(pokemon).destroy? %>
+          <%= link_to(pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
+            <%= image_tag "delete.svg", class:"editar-svg" %>
+          <% end %>
         <% end %>
-      </td>
+          </td>
     </tr>
     <% end %>
 

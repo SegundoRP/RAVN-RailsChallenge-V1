@@ -34,6 +34,7 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'will_paginate', '~> 3.3'
+gem 'pundit'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
@@ -56,6 +57,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
