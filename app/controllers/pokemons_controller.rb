@@ -6,13 +6,13 @@ class PokemonsController < ApplicationController
 
     if params[:search].present?
       if params[:search][:query].empty?
-        @products = Pokemon.all
+        @pokemons = Pokemon.paginate(page: params[:page], per_page: 3)
       else
         sql_query = " \
           name iLIKE :query \
           OR pokemon_type iLIKE :query \
         "
-        @pokemons = Pokemon.where(sql_query, query: "#{params[:search][:query]}")
+        @pokemons = Pokemon.where(sql_query, query: "%#{params[:search][:query]}%").paginate(page: params[:page], per_page: 3)
       end
     end
   end

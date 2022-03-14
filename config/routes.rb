@@ -7,4 +7,10 @@ Rails.application.routes.draw do
       get 'add'
     end
   end
+
+  resources :trainers, except: [:new] do
+    collection do
+      get 'add'
+    end
+  end
 end

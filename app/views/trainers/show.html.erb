@@ -1,0 +1,10 @@
+<div class="container-show mt-3">
+  <h2 class="text-center"><%= @trainer.first_name %> <%= @trainer.last_name %></h2>
+  <div>Email: <%= @trainer.email %></div>
+  <div>Username: <%= @trainer.username %></div>
+  <div>Country: <%= @trainer.country %></div>
+  <div>Pokemons: <%= @trainer.pokemons.each do |p| %></div>
+  <%= p %>
+  <% end %>
+  <%= image_tag @trainer.photo %>
+</div>

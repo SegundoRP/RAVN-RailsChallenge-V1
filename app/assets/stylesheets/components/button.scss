@@ -26,4 +26,14 @@
 .form-search input{
   width: 400px;
   border-radius: 10px;
+  padding: 12px 20px;
+}
+.btn-light{
+  height: 50px;
+  background-color: #F4F4F4;
+  border: 1px solid #F4F4F4;
+  &:hover{
+    background-color: #F4F4F4;
+    border: 1px solid #F4F4F4;
+  }
 }

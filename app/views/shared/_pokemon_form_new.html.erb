@@ -8,7 +8,7 @@
     </div>
     <%= f.input :pokemon_type, label: "Type" %>
     <%= f.input :description, label: "Description" %>
-    <%= f.input :photo, label: "Photo" %>
+    <%= f.input :photo, label: "Photo", as: :file %>
     <%= f.submit class:"btn btn-success mt-3" %>
   <% end %>
 </div>

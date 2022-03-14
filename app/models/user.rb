@@ -1,6 +1,10 @@
 class User < ApplicationRecord
+  has_one_attached :photo
   has_many :catched_pokemons
-  has_many :users, through: :catched_pokemons
+  has_many :pokemons, through: :catched_pokemons
+
+  validates :photo, presence: true
+
   attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -1,0 +1,15 @@
+<h1 class="text-center">Editar Trainer</h1>
+<div class="container">
+  <%= simple_form_for(@trainer, url: trainer_path) do |f| %>
+    <%= f.input :first_name, label: "First name" %>
+    <%= f.input :last_name, label: "Last name" %>
+    <div class="mb-3">
+      <p>Country</p>
+    <%= f.country_select :country, as: :country, prompt: "Select country"%>
+    </div>
+    <%= f.input :email, label: "Email" %>
+    <%= f.input :pokemons, label: "Pokemons" %>
+    <%# <%= f.input :photo, label: "Photo" %>
+    <%= f.submit class:"btn btn-success mt-3" %>
+  <% end %>
+</div>
