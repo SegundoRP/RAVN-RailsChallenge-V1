@@ -29,6 +29,7 @@ class TrainersController < ApplicationController
 
   def create
     @trainer = User.new(user_params)
+    @trainer.pokemons << Pokemon.find(params[:user][:pokemon_id].reject { |c| c.empty? })
     password_user = SecureRandom.uuid
     @trainer.username = "#{user_params[:first_name]}_#{user_params[:last_name]}"
     @trainer.password = password_user
@@ -64,6 +65,6 @@ class TrainersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :country, :pokemons, :photo)
+    params.require(:user).permit(:email, :first_name, :last_name, :country, :photo)
   end
 end

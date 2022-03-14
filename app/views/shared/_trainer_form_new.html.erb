@@ -7,8 +7,7 @@
     <%= f.country_select :country, as: :country, prompt: "Select country"%>
     </div>
     <%= f.input :email, label: "Email" %>
-    <%# <%= f.input :pokemons, collection: Pokemon.all, label: "Pokemons", prompt: "Elige pokemon", multiple: true %> %>
-    <%= f.association :pokemons, label: "Pokemons", prompt: "Elige pokemon", multiple: true %>
+    <%= f.input :pokemon_id, collection: Pokemon.all, label: "Pokemons", prompt: "Elige pokemon", input_html: {multiple: true}%>
     <%= f.input :photo, label: "Photo", as: :file %>
     <%= f.submit class:"btn btn-success mt-3" %>
   <% end %>

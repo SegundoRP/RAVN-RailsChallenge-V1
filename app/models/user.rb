@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :catched_pokemons
   has_many :pokemons, through: :catched_pokemons
 
-  validates :photo, presence: true
+  # validates :photo, presence: true
 
   attr_accessor :login
   # Include default devise modules. Others available are:

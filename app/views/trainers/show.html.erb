@@ -3,8 +3,10 @@
   <div>Email: <%= @trainer.email %></div>
   <div>Username: <%= @trainer.username %></div>
   <div>Country: <%= @trainer.country %></div>
-  <div>Pokemons: <%= @trainer.pokemons.each do |p| %></div>
-  <%= p %>
-  <% end %>
+  <div>Pokemons:
+    <% @trainer.pokemons.each do |p| %>
+      <%= p.name %>
+    <% end %>
+  </div>
   <%= image_tag @trainer.photo %>
 </div>
