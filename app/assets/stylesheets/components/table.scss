@@ -1,0 +1,24 @@
+.products-table {
+  font-size: 15px;
+  border-collapse: separate;
+  border-spacing: 0 1em;
+
+  thead th {
+    color: #013440;
+  }
+
+  td {
+    padding: 10px 0px;
+  }
+
+  tbody tr {
+    border-radius: 10px;
+  }
+
+  .column-info {
+    min-width: 120px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+}

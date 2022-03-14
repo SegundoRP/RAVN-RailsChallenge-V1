@@ -1,13 +1,20 @@
-<h1>Pokemones</h1>
-<div class="text-right mt-4 mb-3">
+<h1 class="text-center">Pokemons</h1>
+<div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
+  <div class="mx-5 ">
+  <%= simple_form_for(:search, method: :get, url: "/pokemons", html: { class: "form-search" } ) do |f| %>
+      <%= f.input :query, placeholder: "Buscar pokemon", label: false, html: { required: true } %>
+  <% end %>
+  </div>
+
   <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
     <i class="fas fa-plus"></i> Agregar
   <% end %>
 </div>
-<table>
+<div class="container">
+<table class="table products-table">
   <thead>
     <tr>
-      <th scope="col" class="text-left text-muted">ID</th>
+      <th scope="col" class="text-center text-muted">ID</th>
       <th scope="col" class="text-center text-muted">NAME</th>
       <th scope="col" class="text-center text-muted">TYPE</th>
       <th scope="col" class="text-center text-muted">ACTIONS</th>
@@ -16,15 +23,16 @@
   <tbody>
     <% @pokemons.each do |pokemon| %>
     <tr>
-      <td>
+      <td scope="row" class="text-center column-info"><%= pokemon.id %></td>
+      <td scope="row" class="text-center column-info">
         <%= link_to(pokemon_path(pokemon)) do %>
           <%= pokemon.name %>
         <% end %>
       </td>
-      <td>
+      <td scope="row" class="text-center column-info">
         <%= pokemon.pokemon_type %>
       </td>
-      <td>
+      <td scope="row" class="text-center column-info">
         <%= link_to(edit_pokemon_path(pokemon), title: "EDIT")  do %>
           <%= image_tag"edit.svg", class:"detalles-svg" %>
         <% end %>
@@ -35,5 +43,12 @@
       </td>
     </tr>
     <% end %>
+
   </tbody>
 </table>
+    <div class="d-flex justify-content-end">
+      <span class="digg_pagination">
+      <%= will_paginate @pokemons, :container => false %>
+      </span>
+    </div>
+</div>

@@ -1,2 +1,7 @@
 class Pokemon < ApplicationRecord
+  has_one_attached :photo
+  has_many :catched_pokemons
+  has_many :pokemons, through: :catched_pokemons
+
+  validates :photo, presence: true
 end

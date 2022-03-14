@@ -1,0 +1,8 @@
+<div class="container-show mt-3">
+  <h2 class="text-center"><%= @pokemon.name %></h2>
+  <div>Type: <%= @pokemon.pokemon_type %></div>
+  <div>Main technique: <%= @pokemon.main_technique %></div>
+  <div>Country: <%= @pokemon.country %></div>
+  <div>Description: <%= @pokemon.description %></div>
+  <%= image_tag @pokemon.photo %>
+</div>
