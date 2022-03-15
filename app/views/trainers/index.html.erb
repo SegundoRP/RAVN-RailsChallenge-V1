@@ -1,57 +1,75 @@
-<h1 class="text-center">Trainers</h1>
-<div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
-  <div class="mx-5 ">
-  <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
-      <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
-      <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
-        <i class="fas fa-search"></i>
-      <% end %>
-  <% end %>
-  </div>
-
-  <%= link_to(add_trainers_path, class: "btn-new-product") do %>
-    <i class="fas fa-plus"></i> Agregar
-  <% end %>
-</div>
-<div class="container">
-<table class="table products-table">
-  <thead>
-    <tr>
-      <th scope="col" class="text-center text-muted">ID</th>
-      <th scope="col" class="text-center text-muted">NAME</th>
-      <th scope="col" class="text-center text-muted">EMAIL</th>
-      <th scope="col" class="text-center text-muted">ACTIONS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @trainers.each do |user| %>
-    <tr>
-      <td scope="row" class="text-center column-info"><%= user.id %></td>
-      <td scope="row" class="text-center column-info">
-        <%= link_to(trainer_path(user)) do %>
-          <%= user.first_name %> <%= user.last_name %>
+<% if current_user.admin %>
+  <h1 class="text-center">Trainers</h1>
+  <div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
+    <div class="mx-5 ">
+    <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
+        <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
+        <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
+          <i class="fas fa-search"></i>
         <% end %>
-      </td>
-      <td scope="row" class="text-center column-info">
-        <%= user.email %>
-      </td>
-      <td scope="row" class="text-center column-info">
-        <%= link_to(edit_trainer_path(user), title: "EDIT")  do %>
-          <%= image_tag"edit.svg", class:"detalles-svg" %>
-        <% end %>
-        &nbsp;&nbsp;&nbsp;
-        <%= link_to(trainer_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
-          <%= image_tag "delete.svg", class:"editar-svg" %>
-        <% end %>
-      </td>
-    </tr>
     <% end %>
-
-  </tbody>
-</table>
-    <div class="d-flex justify-content-end">
-      <span class="digg_pagination">
-      <%= will_paginate @trainers, :container => false %>
-      </span>
     </div>
-</div>
+
+    <%= link_to(add_trainers_path, class: "btn-new-product") do %>
+      <i class="fas fa-plus"></i> Agregar
+    <% end %>
+  </div>
+  <div class="container">
+  <table class="table products-table">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center text-muted">ID</th>
+        <th scope="col" class="text-center text-muted">NAME</th>
+        <th scope="col" class="text-center text-muted">EMAIL</th>
+        <th scope="col" class="text-center text-muted">ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @trainers.each do |user| %>
+      <tr>
+        <td scope="row" class="text-center column-info"><%= user.id %></td>
+        <td scope="row" class="text-center column-info">
+          <%= link_to(trainer_path(user)) do %>
+            <%= user.first_name %> <%= user.last_name %>
+          <% end %>
+        </td>
+        <td scope="row" class="text-center column-info">
+          <%= user.email %>
+        </td>
+        <td scope="row" class="text-center column-info">
+          <%= link_to(edit_trainer_path(user), title: "EDIT")  do %>
+            <%= image_tag"edit.svg", class:"detalles-svg" %>
+          <% end %>
+          &nbsp;&nbsp;&nbsp;
+          <%= link_to(trainer_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
+            <%= image_tag "delete.svg", class:"editar-svg" %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+      <div class="d-flex justify-content-end">
+        <span class="digg_pagination">
+        <%= will_paginate @trainers, :container => false %>
+        </span>
+      </div>
+  </div>
+<% else %>
+  <div class="container-sweet-alert">
+    <button id="sweet-alert-demo" class="btn btn-primary">Catch Pokemon</button>
+  </div>
+  <div class="container">
+    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+    <%= image_tag @user.photo %>
+    <div>Username: <%= @user.username %></div>
+    <div>Country: <%= @user.country %></div>
+    <div> Pokemons you have:
+      <% @user.pokemons.each do |p| %>
+        <%= p.name %>
+      <% end %>
+    </div>
+    <p>You have <%= @user.pokemons.count %>/<%= Pokemon.count %> pokemons</p>
+  </div>
+<% end %>
