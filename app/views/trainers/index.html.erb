@@ -57,8 +57,8 @@
       </div>
   </div>
 <% else %>
-  <div class="container-sweet-alert">
-    <button id="sweet-alert-demo" class="btn btn-primary">Catch Pokemon</button>
+  <div class="container-sweet-alert mt-3 mx-3">
+    <button id="catch-pokemon" class="btn btn-primary">Catch Pokemon</button>
   </div>
   <div class="container">
     <h2><%= @user.first_name %> <%= @user.last_name %></h2>
@@ -72,4 +72,19 @@
     </div>
     <p>You have <%= @user.pokemons.count %>/<%= Pokemon.count %> pokemons</p>
   </div>
+
+  <%# Modal para catched Pokemon %>
+  <template id="catched-pokemon-form">
+    <swal-title class="text-muted">
+      What pokemon did you catch?
+    </swal-title>
+    <swal-icon type="info"></swal-icon>
+    <swal-html>
+      <%= simple_form_for(@catched_pokemon) do |f| %>
+        <%= f.association :pokemon, label: false, prompt: "Pokemons availables"%>
+        <%= f.input :alias, label: "Alias" %>
+        <%= f.submit id: "submit-new-catched-btn", class: "d-none" %>
+      <% end %>
+    </swal-html>
+  </template>
 <% end %>

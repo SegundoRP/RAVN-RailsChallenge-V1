@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get 'add'
     end
   end
+
+  resources :catched_pokemons, only: [:create]
 end

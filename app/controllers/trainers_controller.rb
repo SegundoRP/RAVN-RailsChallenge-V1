@@ -4,6 +4,7 @@ class TrainersController < ApplicationController
   def index
     @trainers = policy_scope(User).where("admin = false AND id != ?", current_user.id).paginate(page: params[:page], per_page: 3)
     @user = current_user
+    @catched_pokemon = CatchedPokemon.new
     if params[:search].present?
       if params[:search][:query].empty?
         @trainers = policy_scope(User).where("admin = false AND id != ?", current_user.id).paginate(page: params[:page], per_page: 3)

@@ -14,3 +14,9 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+
+import { initSweetalert } from '../plugins/init_sweetalert';
+
+document.addEventListener('turbolinks:load', () => {
+  initSweetalert();
+});
