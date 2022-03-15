@@ -36,6 +36,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'will_paginate', '~> 3.3'
 gem 'pundit'
 gem 'mjml-rails'
+gem 'cloudinary', '~> 1.16.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
