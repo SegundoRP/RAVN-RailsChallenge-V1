@@ -35,6 +35,7 @@ gem 'font-awesome-sass'
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'will_paginate', '~> 3.3'
 gem 'pundit'
+gem 'mjml-rails'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

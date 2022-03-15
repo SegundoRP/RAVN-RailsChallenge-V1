@@ -1,0 +1,26 @@
+<mjml>
+ <mj-head>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text><h1>Congratulations!, you have a new catched pokemon</h1></mj-text>
+      <mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text><p>Pokemon: <%= @catched_pokemon.pokemon.name %></p></mj-text>
+        <mj-text><p>Alias: <%= @catched_pokemon.alias %></p></mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+
+        <mj-image><%= cl_image_tag @catched_pokemon.pokemon.photo.key, height: 300, width: 400, crop: :fill %></mj-image>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
