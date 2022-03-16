@@ -1,90 +1,118 @@
 <% if current_user.admin %>
-  <h1 class="text-center">Trainers</h1>
-  <div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
-    <div class="mx-5 ">
-    <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
-        <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
-        <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
-          <i class="fas fa-search"></i>
-        <% end %>
-    <% end %>
-    </div>
+  <div class="d-flex">
+  <div>
+    <%= render 'shared/sidebar' %>
 
-    <%= link_to(add_trainers_path, class: "btn-new-product") do %>
-      <i class="fas fa-plus"></i> Agregar
-    <% end %>
   </div>
-  <div class="container">
-  <table class="table products-table">
-    <thead>
-      <tr>
-        <th scope="col" class="text-center text-muted">ID</th>
-        <th scope="col" class="text-center text-muted">NAME</th>
-        <th scope="col" class="text-center text-muted">EMAIL</th>
-        <th scope="col" class="text-center text-muted">ACTIONS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @trainers.each do |user| %>
-      <tr>
-        <td scope="row" class="text-center column-info"><%= user.id %></td>
-        <td scope="row" class="text-center column-info">
-          <%= link_to(trainer_path(user)) do %>
-            <%= user.first_name %> <%= user.last_name %>
+  <div class="w-100">
+    <%= render 'shared/navbar' %>
+    <h1 class="text-center">Trainers</h1>
+    <div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
+      <div class="mx-5 ">
+      <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
+          <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
+          <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
+            <i class="fas fa-search"></i>
           <% end %>
-        </td>
-        <td scope="row" class="text-center column-info">
-          <%= user.email %>
-        </td>
-        <td scope="row" class="text-center column-info">
-          <%= link_to(edit_trainer_path(user), title: "EDIT")  do %>
-            <%= image_tag"edit.svg", class:"detalles-svg" %>
-          <% end %>
-          &nbsp;&nbsp;&nbsp;
-          <%= link_to(trainer_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
-            <%= image_tag "delete.svg", class:"editar-svg" %>
-          <% end %>
-        </td>
-      </tr>
       <% end %>
-
-    </tbody>
-  </table>
-      <div class="d-flex justify-content-end">
-        <span class="digg_pagination">
-        <%= will_paginate @trainers, :container => false %>
-        </span>
       </div>
-  </div>
-<% else %>
-  <div class="container-sweet-alert mt-3 mx-3">
-    <button id="catch-pokemon" class="btn btn-primary">Catch Pokemon</button>
-  </div>
-  <div class="container">
-    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-    <%= image_tag @user.photo %>
-    <div>Username: <%= @user.username %></div>
-    <div>Country: <%= @user.country %></div>
-    <div> Pokemons you have:
-      <% @user.pokemons.each do |p| %>
-        <%= p.name %>
+
+      <%= link_to(add_trainers_path, class: "btn-new-product") do %>
+        <i class="fas fa-plus"></i> Agregar
       <% end %>
     </div>
-    <p>You have <%= @user.pokemons.count %>/<%= Pokemon.count %> pokemons</p>
-  </div>
+    <div class="container">
+    <table class="table products-table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center text-muted">ID</th>
+          <th scope="col" class="text-center text-muted">NAME</th>
+          <th scope="col" class="text-center text-muted">EMAIL</th>
+          <th scope="col" class="text-center text-muted">ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @trainers.each do |user| %>
+        <tr>
+          <td scope="row" class="text-center column-info"><%= user.id %></td>
+          <td scope="row" class="text-center column-info">
+            <%= link_to(trainer_path(user)) do %>
+              <%= user.first_name %> <%= user.last_name %>
+            <% end %>
+          </td>
+          <td scope="row" class="text-center column-info">
+            <%= user.email %>
+          </td>
+          <td scope="row" class="text-center column-info">
+            <%= link_to(edit_trainer_path(user), title: "EDIT")  do %>
+              <%= image_tag"edit.svg", class:"detalles-svg" %>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;
+            <%= link_to(trainer_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
+              <%= image_tag "delete.svg", class:"editar-svg" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
 
-  <%# Modal para catched Pokemon %>
-  <template id="catched-pokemon-form">
-    <swal-title class="text-muted">
-      What pokemon did you catch?
-    </swal-title>
-    <swal-icon type="info"></swal-icon>
-    <swal-html>
-      <%= simple_form_for(@catched_pokemon) do |f| %>
-        <%= f.association :pokemon, label: false, prompt: "Pokemons availables"%>
-        <%= f.input :alias, label: "Alias" %>
-        <%= f.submit id: "submit-new-catched-btn", class: "d-none" %>
-      <% end %>
-    </swal-html>
-  </template>
-<% end %>
+      </tbody>
+    </table>
+        <div class="d-flex justify-content-end">
+          <span class="digg_pagination">
+          <%= will_paginate @trainers, :container => false %>
+          </span>
+        </div>
+    </div>
+  </div>
+  </div>
+  <% else %>
+    <div class="d-flex">
+      <div>
+        <%= render 'shared/sidebar' %>
+
+      </div>
+      <div class="w-100">
+        <%= render 'shared/navbar' %>
+
+        <div class="container-trainer mt-3">
+          <h2 class="text-center mt-2"><%= @user.first_name %> <%= @user.last_name %></h2>
+          <% if @user.photo.key %>
+            <%= cl_image_tag @user.photo.key, crop: :fill %>
+          <% else %>
+            <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', class:"mt-3 photo-trainer" %>
+          <% end %>
+
+          <div class="mt-4">Email: </div>
+          <div class="border-answer"><%= @user.email %></div>
+          <div class="mt-2">Username: </div>
+          <div class="border-answer"><%= @user.username %></div>
+          <div class="mt-2">Pokemons you have: </div>
+          <div class="border-answer">
+            <% @user.pokemons.each do |p| %>
+              <%= p.name %>&nbsp;
+            <% end %>
+          </div>
+          <div class="mt-2">Total of pokemons you have</div>
+          <div class="border-answer"><%= @user.pokemons.count %>/<%= Pokemon.count %> pokemons</div>
+          <div class="container-sweet-alert mt-2">
+          <button id="catch-pokemon" class="btn-catch">Catch Pokemon</button>
+          </div>
+        </div>
+
+        <%# Modal para catched Pokemon %>
+        <template id="catched-pokemon-form">
+          <swal-title class="text-muted">
+            What pokemon did you catch?
+          </swal-title>
+          <swal-icon type="info"></swal-icon>
+          <swal-html>
+            <%= simple_form_for(@catched_pokemon) do |f| %>
+              <%= f.association :pokemon, label: false, prompt: "Pokemons availables"%>
+              <%= f.input :alias, label: "Alias" %>
+              <%= f.submit id: "submit-new-catched-btn", class: "d-none" %>
+            <% end %>
+          </swal-html>
+        </template>
+      </div>
+    </div>
+  <% end %>

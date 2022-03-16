@@ -1,0 +1,27 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sidebarMenu " >
+
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+      <div class="sidebar-brand-icon nav-logo rotate-n-15">
+        POKEDEX
+      </div>
+  </a>
+
+  <li class="nav-item <%= "active" if current_page?(pokemons_path) %>">
+    <%= link_to pokemons_path, class: "nav-link" do %>
+      <p class="name-sidebar"> Pokemons </p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= "active" if current_page?(trainers_path) %>">
+    <%= link_to trainers_path, class: "nav-link" do %>
+      <p class="name-sidebar"> Trainers </p>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to "#", class: "nav-link" do %>
+      <p class="name-sidebar"> Settings </p>
+    <% end %>
+  </li>
+</ul>

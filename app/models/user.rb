@@ -3,7 +3,10 @@ class User < ApplicationRecord
   has_many :catched_pokemons
   has_many :pokemons, through: :catched_pokemons
 
-  # validates :photo, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\S+@.+\.\S+/, message: "incorrect format" }
+  validates :username, presence: true, uniqueness: true
+  validates :first_name, presence: true, uniqueness: true
+  validates :last_name, presence: true, uniqueness: true
 
   attr_accessor :login
   # Include default devise modules. Others available are:

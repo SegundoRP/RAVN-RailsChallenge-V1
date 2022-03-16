@@ -1,7 +1,16 @@
-<div class="text-right mt-4 mb-3">
-  <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
-    <i class="fas fa-plus"></i> Agregar
-  <% end %>
+<div class="d-flex">
+  <div>
+    <%= render 'shared/sidebar' %>
+
+  </div>
+  <div class="w-100">
+    <%= render 'shared/navbar' %>
+    <div class="text-right mt-4 mb-3">
+      <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
+        <i class="fas fa-plus"></i> Agregar
+      <% end %>
+    </div>
+    <h1 class="text-center">Editar pokemon</h1>
+    <%= render "shared/pokemon_form_new" %>
+  </div>
 </div>
-<h1 class="text-center">Editar pokemon</h1>
-<%= render "shared/pokemon_form_new" %>

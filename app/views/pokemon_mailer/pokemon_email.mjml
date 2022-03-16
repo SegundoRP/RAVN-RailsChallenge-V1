@@ -16,7 +16,6 @@
 
     <mj-section>
       <mj-column>
-
         <mj-image><%= cl_image_tag @catched_pokemon.pokemon.photo.key, height: 300, width: 400, crop: :fill %></mj-image>
       </mj-column>
     </mj-section>

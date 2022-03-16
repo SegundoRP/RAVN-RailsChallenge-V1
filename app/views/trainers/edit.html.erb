@@ -1,20 +1,29 @@
-<div class="text-right mt-4 mb-3">
-  <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
-    <i class="fas fa-plus"></i> Agregar
-  <% end %>
-</div>
-<h1 class="text-center">Editar Trainer</h1>
-<div class="container">
-  <%= simple_form_for(@trainer, url: trainer_path) do |f| %>
-    <%= f.input :first_name, label: "First name" %>
-    <%= f.input :last_name, label: "Last name" %>
-    <div class="mb-3">
-      <p>Country</p>
-    <%= f.country_select :country, as: :country, prompt: "Select country"%>
+<div class="d-flex">
+  <div>
+    <%= render 'shared/sidebar' %>
+
+  </div>
+  <div class="w-100">
+    <%= render 'shared/navbar' %>
+    <div class="text-right mt-4 mb-3">
+      <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
+        <i class="fas fa-plus"></i> Agregar
+      <% end %>
     </div>
-    <%= f.input :email, label: "Email" %>
-    <%= f.input :pokemons, collection: Pokemon.all, label: "Pokemons", prompt: "Elige pokemon", input_html: {multiple: true}%>
-    <%= f.input :photo, label: "Photo", as: :file %>
-    <%= f.submit class:"btn btn-success mt-3" %>
-  <% end %>
+    <h1 class="text-center">Editar Trainer</h1>
+    <div class="container-add container">
+      <%= simple_form_for(@trainer, url: trainer_path) do |f| %>
+        <%= f.input :first_name, label: "First name" %>
+        <%= f.input :last_name, label: "Last name" %>
+        <div class="mb-3">
+          <p>Country</p>
+        <%= f.country_select :country, as: :country, prompt: "Select country"%>
+        </div>
+        <%= f.input :email, label: "Email" %>
+        <%= f.input :pokemons, collection: Pokemon.all, label: "Pokemons", prompt: "Elige pokemon", input_html: {multiple: true}%>
+        <%= f.input :photo, label: "Photo", as: :file %>
+        <%= f.submit class:"btn btn-success mt-3" %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -6,4 +6,10 @@ class PokemonMailer < ApplicationMailer
       format.mjml
     end
   end
+
+  def reminder_email
+    mail(to: 'andres.r4793@gmail.com', subject: 'Reminder to catch new pokemons') do |format|
+      format.mjml
+    end
+  end
 end

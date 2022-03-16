@@ -37,6 +37,7 @@ gem 'will_paginate', '~> 3.3'
 gem 'pundit'
 gem 'mjml-rails'
 gem 'cloudinary', '~> 1.16.0'
+gem 'delayed_job_active_record'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

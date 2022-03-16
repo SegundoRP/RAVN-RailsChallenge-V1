@@ -1,0 +1,17 @@
+ <mj-head>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text><h1>Attention!</h1></mj-text>
+      <mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text><p>You haven't catched any pokemons in 1 week</p></mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

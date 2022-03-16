@@ -1,65 +1,75 @@
-<h1 class="text-center">Pokemons</h1>
-<div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
-  <div class="mx-5 ">
-  <%= simple_form_for(:search, method: :get, url: "/pokemons", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
-      <%= f.input :query, placeholder: "Buscar pokemon", label: false, html: { required: true } %>
-      <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
-        <i class="fas fa-search"></i>
+<div class="d-flex">
+  <div>
+    <%= render 'shared/sidebar' %>
+
+  </div>
+  <div class="w-100">
+    <%= render 'shared/navbar' %>
+    <h1 class="text-center">Pokemons</h1>
+    <div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
+      <div class="mx-5 ">
+      <%= simple_form_for(:search, method: :get, url: "/pokemons", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
+          <%= f.input :query, placeholder: "Buscar pokemon", label: false, html: { required: true } %>
+          <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
+            <i class="fas fa-search"></i>
+          <% end %>
       <% end %>
-  <% end %>
+      </div>
+
+      <% if current_user.admin %>
+        <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
+          <i class="fas fa-plus"></i> Agregar
+        <% end %>
+      <% end %>
+    </div>
+    <div class="container">
+    <table class="table products-table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center text-muted">ID</th>
+          <th scope="col" class="text-center text-muted">NAME</th>
+          <th scope="col" class="text-center text-muted">TYPE</th>
+          <% if current_user.admin %>
+            <th scope="col" class="text-center text-muted">ACTIONS</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pokemons.each do |pokemon| %>
+        <tr>
+          <td scope="row" class="text-center column-info"><%= pokemon.id %></td>
+          <td scope="row" class="text-center column-info">
+            <%= link_to(pokemon_path(pokemon)) do %>
+              <%= pokemon.name %>
+            <% end %>
+          </td>
+          <td scope="row" class="text-center column-info">
+            <%= pokemon.pokemon_type %>
+          </td>
+            <% if policy(pokemon).edit? %>
+              <td scope="row" class="text-center column-info">
+                <%= link_to(edit_pokemon_path(pokemon), title: "EDIT")  do %>
+                  <%= image_tag"edit.svg", class:"detalles-svg" %>
+                <% end %>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;
+            <% if policy(pokemon).destroy? %>
+              <%= link_to(pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
+                <%= image_tag "delete.svg", class:"editar-svg" %>
+              <% end %>
+            <% end %>
+              </td>
+        </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+        <div class="d-flex justify-content-end">
+          <span class="digg_pagination">
+          <%= will_paginate @pokemons, container: false %>
+          </span>
+        </div>
+    </div>
   </div>
 
-  <% if current_user.admin %>
-    <%= link_to(add_pokemons_path, class: "btn-new-product") do %>
-      <i class="fas fa-plus"></i> Agregar
-    <% end %>
-  <% end %>
-</div>
-<div class="container">
-<table class="table products-table">
-  <thead>
-    <tr>
-      <th scope="col" class="text-center text-muted">ID</th>
-      <th scope="col" class="text-center text-muted">NAME</th>
-      <th scope="col" class="text-center text-muted">TYPE</th>
-      <% if current_user.admin %>
-        <th scope="col" class="text-center text-muted">ACTIONS</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pokemons.each do |pokemon| %>
-    <tr>
-      <td scope="row" class="text-center column-info"><%= pokemon.id %></td>
-      <td scope="row" class="text-center column-info">
-        <%= link_to(pokemon_path(pokemon)) do %>
-          <%= pokemon.name %>
-        <% end %>
-      </td>
-      <td scope="row" class="text-center column-info">
-        <%= pokemon.pokemon_type %>
-      </td>
-        <% if policy(pokemon).edit? %>
-          <td scope="row" class="text-center column-info">
-            <%= link_to(edit_pokemon_path(pokemon), title: "EDIT")  do %>
-              <%= image_tag"edit.svg", class:"detalles-svg" %>
-            <% end %>
-        <% end %>
-        &nbsp;&nbsp;&nbsp;
-        <% if policy(pokemon).destroy? %>
-          <%= link_to(pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none", title: "DELETE")  do %>
-            <%= image_tag "delete.svg", class:"editar-svg" %>
-          <% end %>
-        <% end %>
-          </td>
-    </tr>
-    <% end %>
-
-  </tbody>
-</table>
-    <div class="d-flex justify-content-end">
-      <span class="digg_pagination">
-      <%= will_paginate @pokemons, container: false %>
-      </span>
-    </div>
 </div>

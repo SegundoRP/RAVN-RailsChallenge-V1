@@ -1,8 +1,27 @@
-<div class="container-show mt-3">
-  <h2 class="text-center"><%= @pokemon.name %></h2>
-  <div>Type: <%= @pokemon.pokemon_type %></div>
-  <div>Main technique: <%= @pokemon.main_technique %></div>
-  <div>Country: <%= @pokemon.country %></div>
-  <div>Description: <%= @pokemon.description %></div>
-  <%= image_tag @pokemon.photo %>
+<div class="d-flex">
+  <div>
+    <%= render 'shared/sidebar' %>
+
+  </div>
+  <div class="w-100">
+    <%= render 'shared/navbar' %>
+
+    <div class="row">
+      <div class="container-card">
+        <div class="card-pokemon">
+          <div class="image-pokemon">
+            <%= cl_image_tag @pokemon.photo.key, crop: :fill %>
+          </div>
+          <div class="info-pokemon">
+            <h1><%= @pokemon.name %></h1>
+            <p class="mt-3">Type: <%= @pokemon.pokemon_type %></p>
+            <p>Main technique: <%= @pokemon.main_technique %></p>
+            <span>Country:</span><p class="country mt-2 mb-3"><%= @pokemon.country %> </p>
+            <span>Description:</span><p class="description"> <%= @pokemon.description %> </p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
