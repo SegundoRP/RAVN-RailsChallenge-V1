@@ -14,6 +14,6 @@ class CatchedPokemon < ApplicationRecord
   end
 
   def catch_email
-    PokemonMailer.delay(run_at: 2.minutes.from_now).reminder_email
+    PokemonMailer.delay(run_at: 7.days.from_now).reminder_email
   end
 end
