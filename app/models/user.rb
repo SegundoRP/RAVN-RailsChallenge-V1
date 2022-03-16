@@ -21,4 +21,9 @@ class User < ApplicationRecord
       ["lower(username) = :value",
       { value: login.strip.downcase}]).first
   end
+
+   def country_name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
+  end
 end

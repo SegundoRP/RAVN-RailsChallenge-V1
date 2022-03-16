@@ -10,7 +10,7 @@
     <div class="text-right mt-4 mb-5 d-flex justify-content-end search-button">
       <div class="mx-5 ">
       <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
-          <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
+          <%= f.input :query, placeholder: "Search trainer", label: false, html: { required: true } %>
           <%= button_tag(type: 'submit', class: "ml-1 btn btn-light", name: nil) do %>
             <i class="fas fa-search"></i>
           <% end %>
@@ -18,7 +18,7 @@
       </div>
 
       <%= link_to(add_trainers_path, class: "btn-new-product") do %>
-        <i class="fas fa-plus"></i> Agregar
+        <i class="fas fa-plus"></i> Add
       <% end %>
     </div>
     <div class="container mt-3">

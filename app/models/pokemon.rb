@@ -9,4 +9,10 @@ class Pokemon < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :pokemon_type, presence: true
+
+  def country_name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
 end

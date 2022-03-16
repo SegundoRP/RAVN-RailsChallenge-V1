@@ -9,18 +9,16 @@
       <ul class="navbar-nav me-auto d-flex align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= current_user.first_name %> <%= current_user.last_name %>
+            <%= current_user.first_name %> <%= current_user.last_name%>
           </li>
 
           <li class="nav-item dropdown">
             <% if current_user.photo.key %>
-              <%= cl_image_tag current_user.photo.key, crop: :fill, class:"photo-trainer-navbar" %>
+              <%= cl_image_tag current_user.photo.key, crop: :fill, class:"photo-trainer-navbar avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
-              <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', class:"photo-trainer-navbar" %>
+              <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', class:"photo-trainer-navbar avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
