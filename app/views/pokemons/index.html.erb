@@ -23,20 +23,20 @@
       <% end %>
     </div>
     <div class="container">
-    <table class="table products-table">
+    <table class="table table-borderless table-products">
       <thead>
         <tr>
-          <th scope="col" class="text-center text-muted">ID</th>
-          <th scope="col" class="text-center text-muted">NAME</th>
-          <th scope="col" class="text-center text-muted">TYPE</th>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">NAME</th>
+          <th scope="col" class="text-center">TYPE</th>
           <% if current_user.admin %>
-            <th scope="col" class="text-center text-muted">ACTIONS</th>
+            <th scope="col" class="text-center">ACTIONS</th>
           <% end %>
         </tr>
       </thead>
       <tbody>
         <% @pokemons.each do |pokemon| %>
-        <tr>
+        <tr id="table-line">
           <td scope="row" class="text-center column-info"><%= pokemon.id %></td>
           <td scope="row" class="text-center column-info">
             <%= link_to(pokemon_path(pokemon)) do %>
@@ -59,6 +59,9 @@
               <% end %>
             <% end %>
               </td>
+        </tr>
+        <tr class="spacer">
+          <td colspan="100"></td>
         </tr>
         <% end %>
 

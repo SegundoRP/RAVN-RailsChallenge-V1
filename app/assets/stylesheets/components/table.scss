@@ -1,18 +1,20 @@
-.products-table {
+.table-products {
   font-size: 15px;
   border-collapse: separate;
-  border-spacing: 0 1em;
+  border-style: hidden;
+  border: 7px solid white;
 
   thead th {
     color: #013440;
   }
 
   td {
-    padding: 10px 0px;
+    padding: 20px 0px;
   }
 
   tbody tr {
     border-radius: 10px;
+
   }
 
   .column-info {
@@ -20,5 +22,19 @@
     text-align: center;
     vertical-align: middle;
     font-size: 14px;
+    text-decoration: none;
   }
+}
+.spacer td{
+  background-color: #F4F4F4;
+  height: 10px;
+  padding: 0;
+}
+.column-info a{
+  text-decoration: none;
+  color: black;
+}
+#table-line{
+  border-radius: 20px !important;
+  background-color: white;
 }

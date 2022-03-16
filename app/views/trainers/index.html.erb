@@ -7,7 +7,7 @@
   <div class="w-100">
     <%= render 'shared/navbar' %>
     <h1 class="text-center">Trainers</h1>
-    <div class="text-right mt-4 mb-3 d-flex justify-content-end search-button">
+    <div class="text-right mt-4 mb-5 d-flex justify-content-end search-button">
       <div class="mx-5 ">
       <%= simple_form_for(:search, method: :get, url: "/trainers", html: { class: "form-search d-flex justify-content-end" } ) do |f| %>
           <%= f.input :query, placeholder: "Buscar trainer", label: false, html: { required: true } %>
@@ -21,19 +21,19 @@
         <i class="fas fa-plus"></i> Agregar
       <% end %>
     </div>
-    <div class="container">
-    <table class="table products-table">
+    <div class="container mt-3">
+    <table class="table table-borderless table-products">
       <thead>
         <tr>
-          <th scope="col" class="text-center text-muted">ID</th>
-          <th scope="col" class="text-center text-muted">NAME</th>
-          <th scope="col" class="text-center text-muted">EMAIL</th>
-          <th scope="col" class="text-center text-muted">ACTIONS</th>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">NAME</th>
+          <th scope="col" class="text-center">EMAIL</th>
+          <th scope="col" class="text-center">ACTIONS</th>
         </tr>
       </thead>
       <tbody>
         <% @trainers.each do |user| %>
-        <tr>
+        <tr id="table-line">
           <td scope="row" class="text-center column-info"><%= user.id %></td>
           <td scope="row" class="text-center column-info">
             <%= link_to(trainer_path(user)) do %>
@@ -52,6 +52,9 @@
               <%= image_tag "delete.svg", class:"editar-svg" %>
             <% end %>
           </td>
+        </tr>
+         <tr class="spacer">
+          <td colspan="100"></td>
         </tr>
         <% end %>
 

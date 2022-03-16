@@ -1,24 +1,27 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <% if user_signed_in? %>
-      <%= current_user.email %>
-    <% end %>
+  <div class="container-fluid d-flex justify-content-end align-items-center">
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto d-flex align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            <%= current_user.first_name %> <%= current_user.last_name %>
           </li>
 
           <li class="nav-item dropdown">
-
+            <% if current_user.photo.key %>
+              <%= cl_image_tag current_user.photo.key, crop: :fill, class:"photo-trainer-navbar" %>
+            <% else %>
+              <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', class:"photo-trainer-navbar" %>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
